@@ -12,12 +12,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { BoardComponent } from './components/board/board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +34,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatTableModule,
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
