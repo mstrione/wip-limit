@@ -16,13 +16,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BoardComponent } from './components/board/board.component';
+import { FormatTimePipe } from './pipes/format-time.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    BoardComponent
+    BoardComponent,
+    FormatTimePipe
   ],
   imports: [
     BrowserModule,
