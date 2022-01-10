@@ -10,10 +10,17 @@ import { Subscription, timer } from 'rxjs';
 export class BoardComponent implements OnInit {
 
   countDown: Subscription | any;
-  timer = 0;
+  color = "primary";
+  globalTimer = 0;
   round = 1;
-  timer1 = [0,0,0,0,0,0];
-  timer2 = [0,0,0,0,0,0];
+
+  beginTime1 = [] as any;
+  endTime1 = [] as any;
+  processTime1 = [0,0,0,0,0,0];
+  leadTime1  = [] as any;
+  eficiency1 = [] as any;
+  errors1 = [0,0,0,0,0,0];
+
   activeField = -1;
   tick = 10;
   running = false;
@@ -22,12 +29,15 @@ export class BoardComponent implements OnInit {
   ngOnInit() {
     this.countDown = timer(0, this.tick).subscribe(() => {
         if (this.running) { 
-          ++this.timer;
+          ++this.globalTimer;
           if (this.activeField!==-1) {
             if (this.round===1) {
-              ++this.timer1[this.activeField];
+              ++this.processTime1[this.activeField];
+              if (!this.beginTime1[this.activeField]) {
+                this.beginTime1[this.activeField] = this.globalTimer;
+              }
             } else {
-              ++this.timer2[this.activeField];
+              //Acá el round 2
             }
 
           }
@@ -56,6 +66,18 @@ export class BoardComponent implements OnInit {
   onBlur() {
     this.activeField = -1;
   }
+
+  markAsFinished(event: any , field: number) {
+    if (event) {
+      this.endTime1[field] = this.globalTimer;
+      this.leadTime1[field] = this.endTime1[field] - this.beginTime1[field];
+      this.eficiency1[field] = this.processTime1[field] / this.leadTime1[field] * 100 ;
+    }
+  }
+
+  applyFilter(event: any) {
+    console.log(JSON.stringify(event)); 
+}
 
   constructor() { 
     

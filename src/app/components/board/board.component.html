@@ -1,20 +1,126 @@
+<header>
+
+  <div class="section">
+    <h1>Name Factory</h1>
+    <h3>Un juego para entender varios conceptos ágiles</h3>
+
+    <br>
+
+    <button mat-raised-button (click)="start()">Empezar</button>
+
+  </div>
+
+</header>
+
 <br>
 <br>
 <button mat-raised-button color="primary" (click)="start()">Empezar</button>
 <button mat-raised-button color="info" (click)="finish()">Terminar</button>
 <br>
 <br>
-Tiempo Total: {{timer | formatTime}}
+<h1>
+Tiempo Total: {{globalTimer | formatTime}}
+</h1>
+<table class="tg">
+  <thead>
+    <tr>
+      <th class="tg-0lax">Cliente</th>
+      <th class="tg-0lax">Nombre</th>
+      <th class="tg-0lax">Terminado</th>
+      <th class="tg-0lax">Inicio</th>
+      <th class="tg-0lax">Fin</th>
+      <th class="tg-0lax">T. Efectivo</th>
+      <th class="tg-0lax">T. Percibido</th>
+      <th class="tg-0lax">% Eficiencia</th>
+      <th class="tg-0lax">Errores
+  </thead>
+  <tbody>
+
+    <tr>
+      <td class="tg-0lax">
+        Nombre
+      </td>
+      <td class="tg-0lax">
+        <mat-form-field appearance="outline">
+          <mat-label>Escriba aquí el nombre</mat-label>
+          <input matInput autocomplete="off" (focus)="onFocus(0)" (blur)="onBlur()" (keydown.enter)="applyFilter($event)">
+        </mat-form-field>
+      </td>
+      <td class="tg-0lax">
+        <mat-checkbox
+          [color]="color"
+          (change)="markAsFinished($event.checked, 0)">
+        </mat-checkbox>
+      </td>
+      <td class="tg-0lax">{{beginTime1[0] | formatTime}}</td>
+      <td class="tg-0lax">{{endTime1[0] | formatTime}}</td>
+      <td class="tg-0lax">{{processTime1[0] | formatTime}}</td>
+      <td class="tg-0lax">{{leadTime1[0] | formatTime}}</td>
+      <td class="tg-0lax">{{eficiency1[0] | number : '1.1-1'}}</td>
+      <td class="tg-0lax">{{errors1[0]}}</td>
+
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">
+        Nombre
+      </td>
+      <td class="tg-0lax">
+        <mat-form-field appearance="outline">
+          <mat-label>Escriba aquí el nombre</mat-label>
+          <input matInput autocomplete="off" (focus)="onFocus(1)" (blur)="onBlur()">
+        </mat-form-field>
+      </td>
+      <td class="tg-0lax">
+        <mat-checkbox
+          [color]="color"
+          (change)="markAsFinished($event.checked, 1)"
+          >
+        </mat-checkbox>
+      </td>
+      <td class="tg-0lax">{{beginTime1[1] | formatTime}}</td>
+      <td class="tg-0lax">{{endTime1[1] | formatTime}}</td>
+      <td class="tg-0lax">{{processTime1[1] | formatTime}}</td>
+      <td class="tg-0lax">{{leadTime1[1] | formatTime}}</td>
+      <td class="tg-0lax">{{eficiency1[1] | number : '1.1-1'}}</td>
+      <td class="tg-0lax">{{errors1[1]}}</td>
+
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">
+        Nombre
+      </td>
+      <td class="tg-0lax">
+        <mat-form-field appearance="outline">
+          <mat-label>Escriba aquí el nombre</mat-label>
+          <input matInput autocomplete="off" (focus)="onFocus(2)" (blur)="onBlur()">
+        </mat-form-field>
+      </td>
+      <td class="tg-0lax">
+        <mat-checkbox
+          [color]="color"
+          (change)="markAsFinished($event.checked, 2)">
+        </mat-checkbox>
+      </td>
+      <td class="tg-0lax">{{beginTime1[2] | formatTime}}</td>
+      <td class="tg-0lax">{{endTime1[2] | formatTime}}</td>
+      <td class="tg-0lax">{{processTime1[2] | formatTime}}</td>
+      <td class="tg-0lax">{{leadTime1[2] | formatTime}}</td>
+      <td class="tg-0lax">{{eficiency1[2] | number : '1.1-1'}}</td>
+      <td class="tg-0lax">{{errors1[2]}}</td>
+
+    </tr>
+
+  </tbody>
+</table>
+
 
 <p>
-  <mat-form-field appearance="outline">
-    <mat-label>Escriba aquí el nombre</mat-label>
-    <input matInput autocomplete="off" (focus)="onFocus(0)" (blur)="onBlur()">
-  </mat-form-field>
-  {{timer1[0] | formatTime}}
+
 </p>
 
-
+<!--
 <p>
   <mat-form-field appearance="outline">
     <mat-label>Escriba aquí el nombre</mat-label>
@@ -32,3 +138,4 @@ Tiempo Total: {{timer | formatTime}}
   {{timer1[2] | formatTime}}
 </p>
 
+-->
