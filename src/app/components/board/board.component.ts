@@ -13,6 +13,8 @@ export class BoardComponent implements OnInit {
   color = "primary";
   globalTimer = 0;
   round = 1;
+  fieldValue = '';
+  lastKey = '';
 
   beginTime1 = [] as any;
   endTime1 = [] as any;
@@ -20,6 +22,7 @@ export class BoardComponent implements OnInit {
   leadTime1  = [] as any;
   eficiency1 = [] as any;
   errors1 = [0,0,0,0,0,0];
+  fields1 = [false,false,false,false,false,false];
 
   activeField = -1;
   tick = 10;
@@ -72,12 +75,25 @@ export class BoardComponent implements OnInit {
       this.endTime1[field] = this.globalTimer;
       this.leadTime1[field] = this.endTime1[field] - this.beginTime1[field];
       this.eficiency1[field] = this.processTime1[field] / this.leadTime1[field] * 100 ;
+      this.fields1[field] = true;
     }
   }
 
-  applyFilter(event: any) {
-    console.log(JSON.stringify(event)); 
-}
+  logValue(event: any) {
+    if (this.lastKey !== event.key) {
+      this.fieldValue = event.target.value;
+      this.lastKey = event.key
+    }
+  }
+
+  checkIfDeleted(event: any, field: number) {
+    if (event.key === 'Backspace' || event.key === 'Delete') {
+      if (event.target.value != this.fieldValue) {
+        this.errors1[field] += this.fieldValue.length - event.target.value.length;
+      }
+    } 
+    this.fieldValue = event.target.value;
+  }
 
   constructor() { 
     

@@ -43,7 +43,7 @@ Tiempo Total: {{globalTimer | formatTime}}
       <td class="tg-0lax">
         <mat-form-field appearance="outline">
           <mat-label>Escriba aquí el nombre</mat-label>
-          <input matInput autocomplete="off" (focus)="onFocus(0)" (blur)="onBlur()" (keydown.enter)="applyFilter($event)">
+          <input matInput autocomplete="off" [disabled]="fields1[0]" (focus)="onFocus(0)" (blur)="onBlur()" (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,0)">
         </mat-form-field>
       </td>
       <td class="tg-0lax">
@@ -68,7 +68,7 @@ Tiempo Total: {{globalTimer | formatTime}}
       <td class="tg-0lax">
         <mat-form-field appearance="outline">
           <mat-label>Escriba aquí el nombre</mat-label>
-          <input matInput autocomplete="off" (focus)="onFocus(1)" (blur)="onBlur()">
+          <input matInput autocomplete="off" [disabled]="fields1[1]" (focus)="onFocus(1)" (blur)="onBlur()" (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,1)">
         </mat-form-field>
       </td>
       <td class="tg-0lax">
@@ -94,7 +94,7 @@ Tiempo Total: {{globalTimer | formatTime}}
       <td class="tg-0lax">
         <mat-form-field appearance="outline">
           <mat-label>Escriba aquí el nombre</mat-label>
-          <input matInput autocomplete="off" (focus)="onFocus(2)" (blur)="onBlur()">
+          <input matInput autocomplete="off" [disabled]="fields1[2]"  (focus)="onFocus(2)" (blur)="onBlur()" (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,2)">
         </mat-form-field>
       </td>
       <td class="tg-0lax">
