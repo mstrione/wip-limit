@@ -76,6 +76,8 @@ export class BoardComponent implements OnInit {
       this.leadTime1[field] = this.endTime1[field] - this.beginTime1[field];
       this.eficiency1[field] = this.processTime1[field] / this.leadTime1[field] * 100 ;
       this.fields1[field] = true;
+    } else {
+      this.fields1[field] = false;
     }
   }
 
