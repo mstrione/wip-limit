@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Listado de clientes</h1>
+<div mat-dialog-content>
+
+    <p>Ingrese el nombre de los clientes que participarán en la actividad.</p>
+
+    <div *ngFor="let player of players; index as i; trackBy: trackByFn" >
+        <mat-form-field appearance="outline" class="noPadding">
+            <mat-label>Escriba aquí el nombre</mat-label>
+            <input matInput autocomplete="off" [(ngModel)]="players[i]" (ngModelChange)="players[i] = $event.toUpperCase()">
+        </mat-form-field>
+
+        <button mat-icon-button color="primary" (click)="removePlayer(i)" *ngIf="players.length>1">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+
+    <button mat-icon-button (click)="addPlayer()" *ngIf="players.length<8">
+        <mat-icon>person_add</mat-icon>
+    </button>
+
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" [mat-dialog-close]="players" cdkFocusInitial>Aceptar</button>
+    <button mat-raised-button color="accent" (click)="cancel()">Cancelar</button>
+</div>

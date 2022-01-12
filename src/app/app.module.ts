@@ -13,10 +13,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BoardComponent } from './components/board/board.component';
 import { FormatTimePipe } from './pipes/format-time.pipe';
+import { ModalPlayersComponent } from './components/modal-players/modal-players.component';
+import { FormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { FormatTimePipe } from './pipes/format-time.pipe';
     HeaderComponent,
     FooterComponent,
     BoardComponent,
-    FormatTimePipe
+    FormatTimePipe,
+    ModalPlayersComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,9 @@ import { FormatTimePipe } from './pipes/format-time.pipe';
     MatMenuModule,
     MatTableModule,
     MatCheckboxModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

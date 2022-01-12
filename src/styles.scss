@@ -12,3 +12,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   color: #FFF;
 }
+
+.mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+}
+
+.mat-form-field {
+  width: 300px;
+}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription, timer } from 'rxjs';
+import { ModalPlayersComponent } from '../modal-players/modal-players.component';
 
 @Component({
   selector: 'app-board',
@@ -16,6 +18,7 @@ export class BoardComponent implements OnInit {
   fieldValue = '';
   lastKey = '';
 
+  players = [''];
   beginTime1 = [] as any;
   endTime1 = [] as any;
   processTime1 = [0,0,0,0,0,0];
@@ -28,6 +31,7 @@ export class BoardComponent implements OnInit {
   tick = 10;
   running = false;
 
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
     this.countDown = timer(0, this.tick).subscribe(() => {
@@ -70,6 +74,23 @@ export class BoardComponent implements OnInit {
     this.activeField = -1;
   }
 
+  openModalPlayers(): void {
+    const dialogRef = this.dialog.open(ModalPlayersComponent, {
+      width: '500px',
+      data: {
+        players: this.players
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(result);
+      if (result) {
+        this.players = result;
+      }
+    });
+
+  }
+
   markAsFinished(event: any , field: number) {
     if (event) {
       this.endTime1[field] = this.globalTimer;
@@ -97,8 +118,8 @@ export class BoardComponent implements OnInit {
     this.fieldValue = event.target.value;
   }
 
-  constructor() { 
-    
+  trackByFn(index: any, item: any) {   
+    return index; 
   }
 
 }

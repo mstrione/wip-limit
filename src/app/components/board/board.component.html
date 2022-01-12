@@ -6,7 +6,7 @@
 
     <br>
 
-    <button mat-raised-button (click)="start()">Empezar</button>
+    <button mat-raised-button (click)="openModalPlayers()">Empezar</button>
 
   </div>
 
@@ -36,81 +36,33 @@ Tiempo Total: {{globalTimer | formatTime}}
   </thead>
   <tbody>
 
-    <tr>
-      <td class="tg-0lax">
-        Nombre
+    <tr *ngFor="let player of players; index as i; trackBy: trackByFn" >
+      <td class="tg-0lax client">
+        {{players[i]}}
       </td>
       <td class="tg-0lax">
         <mat-form-field appearance="outline">
           <mat-label>Escriba aquí el nombre</mat-label>
-          <input matInput autocomplete="off" [disabled]="fields1[0]" (focus)="onFocus(0)" (blur)="onBlur()" (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,0)">
+          <input matInput autocomplete="off" [disabled]="fields1[i]" (focus)="onFocus(i)" (blur)="onBlur()" (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,i)">
         </mat-form-field>
       </td>
       <td class="tg-0lax">
         <mat-checkbox
           [color]="color"
-          (change)="markAsFinished($event.checked, 0)">
+          (change)="markAsFinished($event.checked, i)">
         </mat-checkbox>
       </td>
-      <td class="tg-0lax">{{beginTime1[0] | formatTime}}</td>
-      <td class="tg-0lax">{{endTime1[0] | formatTime}}</td>
-      <td class="tg-0lax">{{processTime1[0] | formatTime}}</td>
-      <td class="tg-0lax">{{leadTime1[0] | formatTime}}</td>
-      <td class="tg-0lax">{{eficiency1[0] | number : '1.1-1'}}</td>
-      <td class="tg-0lax">{{errors1[0]}}</td>
+      <td class="tg-0lax">{{beginTime1[i] | formatTime}}</td>
+      <td class="tg-0lax">{{endTime1[i] | formatTime}}</td>
+      <td class="tg-0lax">{{processTime1[i] | formatTime}}</td>
+      <td class="tg-0lax">{{leadTime1[i] | formatTime}}</td>
+      <td class="tg-0lax">{{eficiency1[i] | number : '1.1-1'}}</td>
+      <td class="tg-0lax">{{errors1[i]}}</td>
 
     </tr>
 
-    <tr>
-      <td class="tg-0lax">
-        Nombre
-      </td>
-      <td class="tg-0lax">
-        <mat-form-field appearance="outline">
-          <mat-label>Escriba aquí el nombre</mat-label>
-          <input matInput autocomplete="off" [disabled]="fields1[1]" (focus)="onFocus(1)" (blur)="onBlur()" (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,1)">
-        </mat-form-field>
-      </td>
-      <td class="tg-0lax">
-        <mat-checkbox
-          [color]="color"
-          (change)="markAsFinished($event.checked, 1)"
-          >
-        </mat-checkbox>
-      </td>
-      <td class="tg-0lax">{{beginTime1[1] | formatTime}}</td>
-      <td class="tg-0lax">{{endTime1[1] | formatTime}}</td>
-      <td class="tg-0lax">{{processTime1[1] | formatTime}}</td>
-      <td class="tg-0lax">{{leadTime1[1] | formatTime}}</td>
-      <td class="tg-0lax">{{eficiency1[1] | number : '1.1-1'}}</td>
-      <td class="tg-0lax">{{errors1[1]}}</td>
 
-    </tr>
 
-    <tr>
-      <td class="tg-0lax">
-        Nombre
-      </td>
-      <td class="tg-0lax">
-        <mat-form-field appearance="outline">
-          <mat-label>Escriba aquí el nombre</mat-label>
-          <input matInput autocomplete="off" [disabled]="fields1[2]"  (focus)="onFocus(2)" (blur)="onBlur()" (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,2)">
-        </mat-form-field>
-      </td>
-      <td class="tg-0lax">
-        <mat-checkbox
-          [color]="color"
-          (change)="markAsFinished($event.checked, 2)">
-        </mat-checkbox>
-      </td>
-      <td class="tg-0lax">{{beginTime1[2] | formatTime}}</td>
-      <td class="tg-0lax">{{endTime1[2] | formatTime}}</td>
-      <td class="tg-0lax">{{processTime1[2] | formatTime}}</td>
-      <td class="tg-0lax">{{leadTime1[2] | formatTime}}</td>
-      <td class="tg-0lax">{{eficiency1[2] | number : '1.1-1'}}</td>
-      <td class="tg-0lax">{{errors1[2]}}</td>
-
-    </tr>
 
   </tbody>
 </table>
