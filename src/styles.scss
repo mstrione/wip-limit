@@ -20,3 +20,8 @@ body {
 .mat-form-field {
   width: 300px;
 }
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  background: #2a2a2a;
+  border-radius: 5px;
+}

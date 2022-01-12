@@ -27,6 +27,7 @@ h1 {
   border-spacing: 0;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 40px;
 }
 
 .tg td {
@@ -65,4 +66,12 @@ h1 {
   text-align: right !important;
   min-width: 200px;
   text-transform: uppercase;
+}
+
+.top {
+  text-align: center;
+  border-bottom: 1px solid #4c4c4c;
+  padding: 40px;
+  margin-bottom: 40px;
+  background: #4a4a4a;
 }

@@ -12,15 +12,22 @@
 
 </header>
 
-<br>
-<br>
-<button mat-raised-button color="primary" (click)="start()">Empezar</button>
-<button mat-raised-button color="info" (click)="finish()">Terminar</button>
-<br>
-<br>
-<h1>
-Tiempo Total: {{globalTimer | formatTime}}
-</h1>
+<div class="top">
+
+  <h1>Ronda 1</h1>
+
+  <h3>En esta ronda vamos a atender a nuestros clientes de manera secuencial, es decir, una vez que terminamos el trabajo completo de un cliente lo marcamos como finalizado y pasamos al siguiente cliente.</h3>
+
+
+  <h2>
+    Tiempo Total: {{globalTimer | formatTime}}
+  </h2>
+
+  <button mat-raised-button color="primary" (click)="start()">Empezar</button>
+  <button mat-raised-button color="info" (click)="finish()">Terminar</button>
+
+</div>
+
 <table class="tg">
   <thead>
     <tr>
@@ -36,20 +43,19 @@ Tiempo Total: {{globalTimer | formatTime}}
   </thead>
   <tbody>
 
-    <tr *ngFor="let player of players; index as i; trackBy: trackByFn" >
+    <tr *ngFor="let player of players; index as i; trackBy: trackByFn">
       <td class="tg-0lax client">
         {{players[i]}}
       </td>
       <td class="tg-0lax">
         <mat-form-field appearance="outline">
           <mat-label>Escriba aquí el nombre</mat-label>
-          <input matInput autocomplete="off" [disabled]="fields1[i]" (focus)="onFocus(i)" (blur)="onBlur()" (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,i)">
+          <input matInput autocomplete="off" [disabled]="fields1[i]" (focus)="onFocus(i)" (blur)="onBlur()"
+            (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,i)">
         </mat-form-field>
       </td>
       <td class="tg-0lax">
-        <mat-checkbox
-          [color]="color"
-          (change)="markAsFinished($event.checked, i)">
+        <mat-checkbox [color]="color" (change)="markAsFinished($event.checked, i)">
         </mat-checkbox>
       </td>
       <td class="tg-0lax">{{beginTime1[i] | formatTime}}</td>
@@ -61,33 +67,22 @@ Tiempo Total: {{globalTimer | formatTime}}
 
     </tr>
 
-
-
-
   </tbody>
 </table>
 
 
-<p>
+<div class="top">
+  
+  <h1>Ronda 2</h1>
 
-</p>
-
-<!--
-<p>
-  <mat-form-field appearance="outline">
-    <mat-label>Escriba aquí el nombre</mat-label>
-    <input matInput autocomplete="off" (focus)="onFocus(1)" (blur)="onBlur()">
-  </mat-form-field>
-  {{timer1[1] | formatTime}}
-</p>
+  <h3>En esta ronda vamos a atender a nuestros clientes de forma simultanea, es decir, escribimos una letra por de cada cliente y pasamos al siguiente marcando como finalizado una vez que lo terminamos.</h3>
 
 
-<p>
-  <mat-form-field appearance="outline">
-    <mat-label>Escriba aquí el nombre</mat-label>
-    <input matInput autocomplete="off" (focus)="onFocus(2)" (blur)="onBlur()">
-  </mat-form-field>
-  {{timer1[2] | formatTime}}
-</p>
+  <h2>
+    Tiempo Total: {{globalTimer | formatTime}}
+  </h2>
 
--->
+  <button mat-raised-button color="primary" (click)="start()">Empezar</button>
+  <button mat-raised-button color="info" (click)="finish()">Terminar</button>
+
+</div>
