@@ -60,6 +60,10 @@ h1 {
   font-weight: bold;
 }
 
+.small td, .small th {
+  font-size: 10px;
+}
+
 .client {
   font-weight: bold;
   font-size: 16px !important;
@@ -74,4 +78,40 @@ h1 {
   padding: 40px;
   margin-bottom: 40px;
   background: #4a4a4a;
+}
+
+.separator {
+  border-bottom: 3px solid #4a4a4a;
+}
+
+.timeline {
+  padding: 0 !important;
+  width: 1000px;
+  background-color: white;
+  display: flex;
+}
+
+.timeline > div {
+  //flex: 1; /*grow*/
+}
+
+.timebox {
+  display: block;
+  font-size: 9px;
+}
+
+.r1 {
+  background-color: blue;
+}
+
+.r2 {
+  background-color: red;
+}
+
+.begin {
+  //background-color: slategray;
+}
+
+.end {
+  //background-color: teal;
 }

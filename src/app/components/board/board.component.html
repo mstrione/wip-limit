@@ -1,88 +1,221 @@
-<header>
+<div *ngIf="round==0">
+  <header>
 
-  <div class="section">
-    <h1>Name Factory</h1>
-    <h3>Un juego para entender varios conceptos ágiles</h3>
+    <div class="section">
+      <h1>Name Factory</h1>
+      <h3>Esta es una actividad multijugador (de hasta 9 jugadores) y está diseñado para analizar varios conceptos, se
+        juega en dos rondas y la duración de la actividad es de máximo 10 minutos más el tiempo de debate y análisis de
+        resutlados.</h3>
+      <h3>
+        Para comenzar tenemos que cargar el listado de clientes a quienes tenemos que brindar el servicio de "escritura
+        de nombres".
+      </h3>
+      <br>
+      <button mat-raised-button (click)="openModalPlayers()">Comenzar</button>
 
-    <br>
+    </div>
 
-    <button mat-raised-button (click)="openModalPlayers()">Empezar</button>
-
-  </div>
-
-</header>
-
-<div class="top">
-
-  <h1>Ronda 1</h1>
-
-  <h3>En esta ronda vamos a atender a nuestros clientes de manera secuencial, es decir, una vez que terminamos el trabajo completo de un cliente lo marcamos como finalizado y pasamos al siguiente cliente.</h3>
-
-
-  <h2>
-    Tiempo Total: {{globalTimer | formatTime}}
-  </h2>
-
-  <button mat-raised-button color="primary" (click)="start()">Empezar</button>
-  <button mat-raised-button color="info" (click)="finish()">Terminar</button>
+  </header>
 
 </div>
 
-<table class="tg">
-  <thead>
-    <tr>
-      <th class="tg-0lax">Cliente</th>
-      <th class="tg-0lax">Nombre</th>
-      <th class="tg-0lax">Terminado</th>
-      <th class="tg-0lax">Inicio</th>
-      <th class="tg-0lax">Fin</th>
-      <th class="tg-0lax">T. Efectivo</th>
-      <th class="tg-0lax">T. Percibido</th>
-      <th class="tg-0lax">% Eficiencia</th>
-      <th class="tg-0lax">Errores
-  </thead>
-  <tbody>
+<div *ngIf="round==1">
 
-    <tr *ngFor="let player of players; index as i; trackBy: trackByFn">
-      <td class="tg-0lax client">
-        {{players[i]}}
-      </td>
-      <td class="tg-0lax">
-        <mat-form-field appearance="outline">
-          <mat-label>Escriba aquí el nombre</mat-label>
-          <input matInput autocomplete="off" [disabled]="fields1[i]" (focus)="onFocus(i)" (blur)="onBlur()"
-            (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,i)">
-        </mat-form-field>
-      </td>
-      <td class="tg-0lax">
-        <mat-checkbox [color]="color" (change)="markAsFinished($event.checked, i)">
-        </mat-checkbox>
-      </td>
-      <td class="tg-0lax">{{beginTime1[i] | formatTime}}</td>
-      <td class="tg-0lax">{{endTime1[i] | formatTime}}</td>
-      <td class="tg-0lax">{{processTime1[i] | formatTime}}</td>
-      <td class="tg-0lax">{{leadTime1[i] | formatTime}}</td>
-      <td class="tg-0lax">{{eficiency1[i] | number : '1.1-1'}}</td>
-      <td class="tg-0lax">{{errors1[i]}}</td>
+  <div class="top">
 
-    </tr>
+    <h1>Ronda 1</h1>
 
-  </tbody>
-</table>
+    <h3>En esta ronda vamos a atender a nuestros clientes de manera secuencial, es decir, una vez que terminamos el
+      nombre completo de un cliente lo marcamos como finalizado y pasamos al siguiente cliente.
+    </h3>
+
+    <h2>
+      Tiempo Total: {{globalTimer1 | formatTime}}
+    </h2>
+
+    <button mat-raised-button color="primary" (click)="start(1)">Empezar Ronda 1</button>
+    <button mat-raised-button color="info" (click)="continue()">Continuar</button>
+
+  </div>
+
+  <table class="tg">
+    <thead>
+      <tr>
+        <th class="tg-0lax">Cliente</th>
+        <th class="tg-0lax">Nombre</th>
+        <th class="tg-0lax">Terminado</th>
+        <th class="tg-0lax">Inicio</th>
+        <th class="tg-0lax">Fin</th>
+        <th class="tg-0lax">T. Efectivo</th>
+        <th class="tg-0lax">T. Percibido</th>
+        <th class="tg-0lax">% Eficiencia</th>
+        <th class="tg-0lax">Errores
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let player of players; index as i; trackBy: trackByFn">
+        <td class="tg-0lax client">
+          {{players[i]}}
+        </td>
+        <td class="tg-0lax">
+          <mat-form-field appearance="outline">
+            <mat-label>Escriba aquí el nombre</mat-label>
+            <input matInput autocomplete="off" [disabled]="fields1[i]" (focus)="onFocus(i)" (blur)="onBlur()"
+              (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,i)">
+          </mat-form-field>
+        </td>
+        <td class="tg-0lax">
+          <mat-checkbox [color]="color" (change)="markAsFinished($event.checked, i)">
+          </mat-checkbox>
+        </td>
+        <td class="tg-0lax">{{beginTime1[i] | formatTime}}</td>
+        <td class="tg-0lax">{{endTime1[i] | formatTime}}</td>
+        <td class="tg-0lax">{{processTime1[i] | formatTime}}</td>
+        <td class="tg-0lax">{{leadTime1[i] | formatTime}}</td>
+        <td class="tg-0lax">{{eficiency1[i] | number : '1.1-1'}}</td>
+        <td class="tg-0lax">{{errors1[i]}}</td>
+
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+<div *ngIf="round==2">
+
+  <div class="top">
+
+    <h1>Ronda 2</h1>
+
+    <h3>En esta ronda vamos a atender a nuestros clientes de forma simultanea, es decir, escribimos una letra del nombre
+      por
+      cada cliente y pasamos al siguiente marcando como finalizado una vez que terminamos de escribir el nombre que nos
+      pide el cliente.
+    </h3>
+
+    <h2>
+      Tiempo Total: {{globalTimer2 | formatTime}}
+    </h2>
+
+    <button mat-raised-button color="primary" (click)="start(2)">Empezar</button>
+    <button mat-raised-button color="info" (click)="continue()">Continuar</button>
+
+  </div>
 
 
-<div class="top">
-  
-  <h1>Ronda 2</h1>
+  <table class="tg">
+    <thead>
+      <tr>
+        <th class="tg-0lax">Cliente</th>
+        <th class="tg-0lax">Nombre</th>
+        <th class="tg-0lax">Terminado</th>
+        <th class="tg-0lax">Inicio</th>
+        <th class="tg-0lax">Fin</th>
+        <th class="tg-0lax">T. Efectivo</th>
+        <th class="tg-0lax">T. Percibido</th>
+        <th class="tg-0lax">% Eficiencia</th>
+        <th class="tg-0lax">Errores
+    </thead>
+    <tbody>
 
-  <h3>En esta ronda vamos a atender a nuestros clientes de forma simultanea, es decir, escribimos una letra por de cada cliente y pasamos al siguiente marcando como finalizado una vez que lo terminamos.</h3>
+      <tr *ngFor="let player of players; index as i; trackBy: trackByFn">
+        <td class="tg-0lax client">
+          {{players[i]}}
+        </td>
+        <td class="tg-0lax">
+          <mat-form-field appearance="outline">
+            <mat-label>Escriba aquí el nombre</mat-label>
+            <input matInput autocomplete="off" [disabled]="fields2[i]" (focus)="onFocus(i)" (blur)="onBlur()"
+              (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,i)">
+          </mat-form-field>
+        </td>
+        <td class="tg-0lax">
+          <mat-checkbox [color]="color" (change)="markAsFinished($event.checked, i)">
+          </mat-checkbox>
+        </td>
+        <td class="tg-0lax">{{beginTime2[i] | formatTime}}</td>
+        <td class="tg-0lax">{{endTime2[i] | formatTime}}</td>
+        <td class="tg-0lax">{{processTime2[i] | formatTime}}</td>
+        <td class="tg-0lax">{{leadTime2[i] | formatTime}}</td>
+        <td class="tg-0lax">{{eficiency2[i] | number : '1.1-1'}}</td>
+        <td class="tg-0lax">{{errors2[i]}}</td>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
 
 
-  <h2>
-    Tiempo Total: {{globalTimer | formatTime}}
-  </h2>
+<div *ngIf="round==3">
 
-  <button mat-raised-button color="primary" (click)="start()">Empezar</button>
-  <button mat-raised-button color="info" (click)="finish()">Terminar</button>
+  <div class="top">
+
+    <h1>Resultados</h1>
+
+    <h3>A continuación vemos los resultados de las dos rondas para hacer un análisis.
+    </h3>
+
+    <h3>¿En qué ronda fuimos más eficientes? ¿Cambió el alcance de nuestro trabajo? ¿Por qué ocurrió esto?
+    </h3>
+
+    <h2>
+      Tiempo Total Ronda 1: {{globalTimer1 | formatTime}} - Tiempo Total Ronda 2: {{globalTimer2 | formatTime}}
+    </h2>
+
+    <table class="tg small">
+
+      <tr>
+        <th class="tg-0lax">Cliente</th>
+        <th class="tg-0lax">Ronda</th>
+        <th class="tg-0lax">T. Inicio </th>
+        <th class="tg-0lax">T. Fin</th>
+        <th class="tg-0lax">T. Efectivo</th>
+        <th class="tg-0lax">T. Percibido</th>
+        <th class="tg-0lax">% Eficiencia</th>
+        <th class="tg-0lax">Errores</th>
+        <th class="tg-0lax">Línea de tiempo</th>
+      </tr>
+      <ng-template ngFor let-player [ngForOf]="players" let-i="index" [ngForTrackBy]="trackByFn">
+        <tr>
+          <td class="tg-0lax" rowspan="2">{{players[i]}}</td>
+          <td class="tg-0lax">1</td>
+
+          <td class="tg-0lax">{{beginTime1[i] | formatTime}}</td>
+          <td class="tg-0lax">{{endTime1[i] | formatTime}}</td>
+          <td class="tg-0lax">{{processTime1[i] | formatTime}}</td>
+          <td class="tg-0lax">{{leadTime1[i] | formatTime}}</td>
+          <td class="tg-0lax">{{eficiency1[i] | number : '1.1-1'}}</td>
+          <td class="tg-0lax">{{errors1[i]}}</td>
+
+          <td class="tg-0lax timeline">
+            <div [ngStyle]="{'width.px': beginTime1[i]/100}" class="begin"></div>
+            <div [ngStyle]="{'width.px': leadTime1[i]/100}" class="timebox r1">{{beginTime1[i] | formatTime}}</div>
+            <div class="end">{{endTime1[i] | formatTime}}</div>
+          </td>
+        </tr>
+        <tr class="separator">
+          <td class="tg-0lax">2</td>
+          <td class="tg-0lax">{{beginTime2[i] | formatTime}}</td>
+          <td class="tg-0lax">{{endTime2[i] | formatTime}}</td>
+          <td class="tg-0lax">{{processTime2[i] | formatTime}}</td>
+          <td class="tg-0lax">{{leadTime2[i] | formatTime}}</td>
+          <td class="tg-0lax">{{eficiency2[i] | number : '1.1-1'}}</td>
+          <td class="tg-0lax">{{errors2[i]}}</td>
+          <td class="tg-0lax timeline">
+            <div [ngStyle]="{'width.px': beginTime2[i]/100}" class="begin"></div>
+            <div [ngStyle]="{'width.px': leadTime2[i]/100}" class="timebox r2">{{beginTime2[i] | formatTime}}</div>
+            <div class="end">{{endTime2[i] | formatTime}}</div>
+          </td>
+        </tr>
+      </ng-template>
+
+    </table>
+
+    <br>
+    <button mat-raised-button color="primary" (click)="restart()">Volver a comenzar</button>
+
+  </div>
 
 </div>
