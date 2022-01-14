@@ -86,7 +86,7 @@ h1 {
 
 .timeline {
   padding: 0 !important;
-  width: 1000px;
+  width: 800px;
   background-color: white;
   display: flex;
 }
@@ -100,18 +100,22 @@ h1 {
   font-size: 9px;
 }
 
+.timebox {
+  display: block;
+  font-size: 9px;
+  text-align: left;
+  padding: 3px 0px 3px 2px;
+}
+
 .r1 {
-  background-color: blue;
+  background-color: rgb(176 190 197);
+  color: black;
 }
 
 .r2 {
-  background-color: red;
-}
-
-.begin {
-  //background-color: slategray;
+  background-color: #c2185b;
 }
 
 .end {
-  //background-color: teal;
+  padding: 3px 0px 3px 2px;
 }

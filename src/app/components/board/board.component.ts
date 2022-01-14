@@ -20,6 +20,9 @@ export class BoardComponent implements OnInit {
   lastKey = '';
   players = [''];
 
+  round1Done = false;
+  round2Done = false;
+
   beginTime1 = [] as any;
   endTime1 = [] as any;
   processTime1 = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -87,9 +90,30 @@ export class BoardComponent implements OnInit {
     this.running = false;
   }
 
+  calculateX (value: number) {
+    let max = 0;
+    let tail = 0;
+    if (value<6000) {
+      tail = 1000;
+    } else {
+      tail = 3000;
+    }
+    if (this.globalTimer1 > this.globalTimer2) {
+      max = this.globalTimer1 + tail;
+    } else {
+      max = this.globalTimer2 + tail;
+    }
+    return (value) / ( (max) / 800);
+  }
+
   restart() {
     this.players = [''];
     this.round = 0;
+
+    this.globalTimer1 = 0;
+    this.globalTimer2 = 0;
+    this.round1Done = false;
+    this.round2Done = false;
 
     this.beginTime1 = [] as any;
     this.endTime1 = [] as any;
@@ -98,7 +122,7 @@ export class BoardComponent implements OnInit {
     this.eficiency1 = [] as any;
     this.errors1 = [0, 0, 0, 0, 0, 0, 0, 0];
     this.fields1 = [false, false, false, false, false, false, false, false];
-  
+
     this.beginTime2 = [] as any;
     this.endTime2 = [] as any;
     this.processTime2 = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -133,6 +157,39 @@ export class BoardComponent implements OnInit {
 
   }
 
+  checkIfDone() {
+    let i = 0;
+    let clientsUnfinished = false;
+
+    console.log("VALIDAMOS");
+
+    if (this.round === 1) {
+      this.players.forEach(element => {
+        console.log(i + " - " + this.fields1[i]);
+        if (!this.fields1[i]) {
+          clientsUnfinished = true;
+        }
+        i++;
+      }); 
+      if (!clientsUnfinished) {
+        this.running = false;
+        this.round1Done = true;
+      }
+    } else {
+      this.players.forEach(element => {
+        console.log(i + " - " + this.fields1[i]);
+        if (!this.fields2[i]) {
+          clientsUnfinished = true;
+        }
+        i++;
+      }); 
+      if (!clientsUnfinished) {
+        this.running = false;
+        this.round2Done = true;
+      }
+    }
+  }
+
   markAsFinished(event: any, field: number) {
     if (event) {
       if (this.round === 1) {
@@ -140,13 +197,14 @@ export class BoardComponent implements OnInit {
         this.leadTime1[field] = this.endTime1[field] - this.beginTime1[field];
         this.eficiency1[field] = this.processTime1[field] / this.leadTime1[field] * 100;
         this.fields1[field] = true;
+        this.checkIfDone();
       } else {
         this.endTime2[field] = this.globalTimer2;
         this.leadTime2[field] = this.endTime2[field] - this.beginTime2[field];
         this.eficiency2[field] = this.processTime2[field] / this.leadTime2[field] * 100;
         this.fields2[field] = true;
+        this.checkIfDone();
       }
-
     } else {
       if (this.round === 1) {
         this.fields1[field] = false;

@@ -2,7 +2,7 @@
   <header>
 
     <div class="section">
-      <h1>Name Factory</h1>
+      <h1>La Fábrica de Nombres</h1>
       <h3>Esta es una actividad multijugador (de hasta 9 jugadores) y está diseñado para analizar varios conceptos, se
         juega en dos rondas y la duración de la actividad es de máximo 10 minutos más el tiempo de debate y análisis de
         resutlados.</h3>
@@ -30,11 +30,11 @@
     </h3>
 
     <h2>
-      Tiempo Total: {{globalTimer1 | formatTime}}
+      Tiempo Total: {{globalTimer1 | formatTime}} - {{globalTimer1}}
     </h2>
 
-    <button mat-raised-button color="primary" (click)="start(1)">Empezar Ronda 1</button>
-    <button mat-raised-button color="info" (click)="continue()">Continuar</button>
+    <button mat-raised-button color="primary" (click)="start(1)" *ngIf="!round1Done">Empezar</button>
+    <button mat-raised-button color="info" (click)="continue()" *ngIf="round1Done">Continuar</button>
 
   </div>
 
@@ -60,7 +60,7 @@
         <td class="tg-0lax">
           <mat-form-field appearance="outline">
             <mat-label>Escriba aquí el nombre</mat-label>
-            <input matInput autocomplete="off" [disabled]="fields1[i]" (focus)="onFocus(i)" (blur)="onBlur()"
+            <input matInput autocomplete="off" [disabled]="(fields1[i] || !running)" (focus)="onFocus(i)" (blur)="onBlur()"
               (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,i)">
           </mat-form-field>
         </td>
@@ -98,11 +98,10 @@
       Tiempo Total: {{globalTimer2 | formatTime}}
     </h2>
 
-    <button mat-raised-button color="primary" (click)="start(2)">Empezar</button>
-    <button mat-raised-button color="info" (click)="continue()">Continuar</button>
+    <button mat-raised-button color="primary" (click)="start(2)" *ngIf="!round2Done">Empezar</button>
+    <button mat-raised-button color="info" (click)="continue()" *ngIf="round2Done">Continuar</button>
 
   </div>
-
 
   <table class="tg">
     <thead>
@@ -126,7 +125,7 @@
         <td class="tg-0lax">
           <mat-form-field appearance="outline">
             <mat-label>Escriba aquí el nombre</mat-label>
-            <input matInput autocomplete="off" [disabled]="fields2[i]" (focus)="onFocus(i)" (blur)="onBlur()"
+            <input matInput autocomplete="off" [disabled]="(fields2[i] || !running)" (focus)="onFocus(i)" (blur)="onBlur()"
               (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,i)">
           </mat-form-field>
         </td>
@@ -161,7 +160,7 @@
     </h3>
 
     <h2>
-      Tiempo Total Ronda 1: {{globalTimer1 | formatTime}} - Tiempo Total Ronda 2: {{globalTimer2 | formatTime}}
+      Tiempo Total Ronda 1: {{globalTimer1 | formatTime}} - Tiempo Total Ronda 2: {{globalTimer2 | formatTime}} 
     </h2>
 
     <table class="tg small">
@@ -190,8 +189,8 @@
           <td class="tg-0lax">{{errors1[i]}}</td>
 
           <td class="tg-0lax timeline">
-            <div [ngStyle]="{'width.px': beginTime1[i]/100}" class="begin"></div>
-            <div [ngStyle]="{'width.px': leadTime1[i]/100}" class="timebox r1">{{beginTime1[i] | formatTime}}</div>
+            <div [ngStyle]="{'width.px': calculateX(beginTime1[i])}" class="begin"></div>
+            <div [ngStyle]="{'width.px': calculateX(leadTime1[i])}" class="timebox r1">{{beginTime1[i] | formatTime}}</div>
             <div class="end">{{endTime1[i] | formatTime}}</div>
           </td>
         </tr>
@@ -204,8 +203,8 @@
           <td class="tg-0lax">{{eficiency2[i] | number : '1.1-1'}}</td>
           <td class="tg-0lax">{{errors2[i]}}</td>
           <td class="tg-0lax timeline">
-            <div [ngStyle]="{'width.px': beginTime2[i]/100}" class="begin"></div>
-            <div [ngStyle]="{'width.px': leadTime2[i]/100}" class="timebox r2">{{beginTime2[i] | formatTime}}</div>
+            <div [ngStyle]="{'width.px': calculateX(beginTime2[i])}" class="begin"></div>
+            <div [ngStyle]="{'width.px': calculateX(leadTime2[i])}" class="timebox r2">{{beginTime2[i] | formatTime}}</div>
             <div class="end">{{endTime2[i] | formatTime}}</div>
           </td>
         </tr>
