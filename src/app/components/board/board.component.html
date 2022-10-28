@@ -2,16 +2,13 @@
   <header>
 
     <div class="section">
-      <h1>La Fábrica de Nombres</h1>
-      <h3>Esta es una actividad multijugador (de hasta 9 jugadores) y está diseñado para analizar varios conceptos, se
-        juega en dos rondas y la duración de la actividad es de máximo 10 minutos más el tiempo de debate y análisis de
-        resutlados.</h3>
+      <h1>Name's factory</h1>
+      <h3>This is a multiplayer activity (up to 9 players) and it is designed to analyze several concepts, we will play two rounds and the duration of the activity is a maximum of 10 minutes plus the time to debate and analyze results.</h3>
       <h3>
-        Para comenzar tenemos que cargar el listado de clientes a quienes tenemos que brindar el servicio de "escritura
-        de nombres".
+        To start we have to load the list of clients to whom we have to provide the "name writing" service.
       </h3>
       <br>
-      <button mat-raised-button (click)="openModalPlayers()">Comenzar</button>
+      <button mat-raised-button (click)="openModalPlayers()">Start game</button>
 
     </div>
 
@@ -23,33 +20,32 @@
 
   <div class="top">
 
-    <h1>Ronda 1</h1>
+    <h1>Round 1</h1>
 
-    <h3>En esta ronda vamos a atender a nuestros clientes de manera secuencial, es decir, una vez que terminamos el
-      nombre completo de un cliente lo marcamos como finalizado y pasamos al siguiente cliente.
+    <h3>In this round we are going to serve our clients sequentially, that is, once we finish the full name of a client, we mark it as finished and move on to the next client.
     </h3>
 
     <h2>
-      Tiempo Total: {{globalTimer1 | formatTime}} - {{globalTimer1}}
+      Total time: {{globalTimer1 | formatTime}}
     </h2>
 
-    <button mat-raised-button color="primary" (click)="start(1)" *ngIf="!round1Done">Empezar</button>
-    <button mat-raised-button color="info" (click)="continue()" *ngIf="round1Done">Continuar</button>
+    <button mat-raised-button color="primary" (click)="start(1)" *ngIf="!round1Done">Start round 1</button>
+    <button mat-raised-button color="info" (click)="continue()" *ngIf="round1Done">Continue</button>
 
   </div>
 
   <table class="tg">
     <thead>
       <tr>
-        <th class="tg-0lax">Cliente</th>
-        <th class="tg-0lax">Nombre</th>
-        <th class="tg-0lax">Terminado</th>
-        <th class="tg-0lax">Inicio</th>
-        <th class="tg-0lax">Fin</th>
-        <th class="tg-0lax">T. Efectivo</th>
-        <th class="tg-0lax">T. Percibido</th>
-        <th class="tg-0lax">% Eficiencia</th>
-        <th class="tg-0lax">Errores
+        <th class="tg-0lax">Client</th>
+        <th class="tg-0lax">Name</th>
+        <th class="tg-0lax">Done</th>
+        <th class="tg-0lax">Start</th>
+        <th class="tg-0lax">Finish</th>
+        <th class="tg-0lax">Effective T.</th>
+        <th class="tg-0lax">Elapsed T.</th>
+        <th class="tg-0lax">% Efficiency</th>
+        <th class="tg-0lax">Errors
     </thead>
     <tbody>
 
@@ -59,7 +55,7 @@
         </td>
         <td class="tg-0lax">
           <mat-form-field appearance="outline">
-            <mat-label>Escriba aquí el nombre</mat-label>
+            <mat-label>Write the name here</mat-label>
             <input matInput autocomplete="off" [disabled]="(fields1[i] || !running)" (focus)="onFocus(i)" (blur)="onBlur()"
               (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,i)">
           </mat-form-field>
@@ -86,35 +82,32 @@
 
   <div class="top">
 
-    <h1>Ronda 2</h1>
+    <h1>Round 2</h1>
 
-    <h3>En esta ronda vamos a atender a nuestros clientes de forma simultanea, es decir, escribimos una letra del nombre
-      por
-      cada cliente y pasamos al siguiente marcando como finalizado una vez que terminamos de escribir el nombre que nos
-      pide el cliente.
+    <h3>In this round we are going to serve our clients simultaneously, that is, we write ONE letter of the name for each client and move on to the next one, marking it as finished once we finish writing the name that the client asks us for.
     </h3>
 
     <h2>
-      Tiempo Total: {{globalTimer2 | formatTime}}
+      Total time: {{globalTimer2 | formatTime}}
     </h2>
 
-    <button mat-raised-button color="primary" (click)="start(2)" *ngIf="!round2Done">Empezar</button>
-    <button mat-raised-button color="info" (click)="continue()" *ngIf="round2Done">Continuar</button>
+    <button mat-raised-button color="primary" (click)="start(2)" *ngIf="!round2Done">Start Round 2</button>
+    <button mat-raised-button color="info" (click)="continue()" *ngIf="round2Done">Continue</button>
 
   </div>
 
   <table class="tg">
     <thead>
       <tr>
-        <th class="tg-0lax">Cliente</th>
-        <th class="tg-0lax">Nombre</th>
-        <th class="tg-0lax">Terminado</th>
-        <th class="tg-0lax">Inicio</th>
-        <th class="tg-0lax">Fin</th>
-        <th class="tg-0lax">T. Efectivo</th>
-        <th class="tg-0lax">T. Percibido</th>
-        <th class="tg-0lax">% Eficiencia</th>
-        <th class="tg-0lax">Errores
+        <th class="tg-0lax">Client</th>
+        <th class="tg-0lax">Name</th>
+        <th class="tg-0lax">Done</th>
+        <th class="tg-0lax">Start</th>
+        <th class="tg-0lax">Finish</th>
+        <th class="tg-0lax">Effective T.</th>
+        <th class="tg-0lax">Elapsed T.</th>
+        <th class="tg-0lax">% Efficiency</th>
+        <th class="tg-0lax">Errors
     </thead>
     <tbody>
 
@@ -124,7 +117,7 @@
         </td>
         <td class="tg-0lax">
           <mat-form-field appearance="outline">
-            <mat-label>Escriba aquí el nombre</mat-label>
+            <mat-label>Write name here</mat-label>
             <input matInput autocomplete="off" [disabled]="(fields2[i] || !running)" (focus)="onFocus(i)" (blur)="onBlur()"
               (keydown)="logValue($event)" (keyup)="checkIfDeleted($event,i)">
           </mat-form-field>
@@ -151,30 +144,30 @@
 
   <div class="top">
 
-    <h1>Resultados</h1>
+    <h1>Results</h1>
 
-    <h3>A continuación vemos los resultados de las dos rondas para hacer un análisis.
+    <h3>Below we see the results of the two rounds to make an analysis.
     </h3>
 
-    <h3>¿En qué ronda fuimos más eficientes? ¿Cambió el alcance de nuestro trabajo? ¿Por qué ocurrió esto?
+    <h3>In which round were we most efficient? Has the scope of our work changed? Why did this happen?
     </h3>
 
     <h2>
-      Tiempo Total Ronda 1: {{globalTimer1 | formatTime}} - Tiempo Total Ronda 2: {{globalTimer2 | formatTime}} 
+      Total time Round 1: {{globalTimer1 | formatTime}} - Total time Round 2: {{globalTimer2 | formatTime}} 
     </h2>
 
     <table class="tg small">
 
       <tr>
-        <th class="tg-0lax">Cliente</th>
-        <th class="tg-0lax">Ronda</th>
-        <th class="tg-0lax">T. Inicio </th>
-        <th class="tg-0lax">T. Fin</th>
-        <th class="tg-0lax">T. Efectivo</th>
-        <th class="tg-0lax">T. Percibido</th>
-        <th class="tg-0lax">% Eficiencia</th>
-        <th class="tg-0lax">Errores</th>
-        <th class="tg-0lax">Línea de tiempo</th>
+        <th class="tg-0lax">Client</th>
+        <th class="tg-0lax">Round</th>
+        <th class="tg-0lax">Start</th>
+        <th class="tg-0lax">Finish</th>
+        <th class="tg-0lax">Effective T.</th>
+        <th class="tg-0lax">Elapsed T.</th>
+        <th class="tg-0lax">% Efficiency</th>
+        <th class="tg-0lax">Errors</th>
+        <th class="tg-0lax">Time line</th>
       </tr>
       <ng-template ngFor let-player [ngForOf]="players" let-i="index" [ngForTrackBy]="trackByFn">
         <tr>
@@ -213,7 +206,7 @@
     </table>
 
     <br>
-    <button mat-raised-button color="primary" (click)="restart()">Volver a comenzar</button>
+    <button mat-raised-button color="primary" (click)="restart()">Restart</button>
 
   </div>
 

@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>Listado de clientes</h1>
+<h1 mat-dialog-title>Client list</h1>
 <div mat-dialog-content>
 
-    <p>Ingrese el nombre de los clientes que participarán en la actividad.</p>
+    <p>Please enter the name of the clients for this activity</p>
 
     <div *ngFor="let player of players; index as i; trackBy: trackByFn" >
         <mat-form-field appearance="outline" class="noPadding">
-            <mat-label>Escriba aquí el nombre</mat-label>
+            <mat-label>Write client name here</mat-label>
             <input matInput autocomplete="off" [(ngModel)]="players[i]" (ngModelChange)="players[i] = $event.toUpperCase()">
         </mat-form-field>
 
@@ -21,6 +21,6 @@
 </div>
 
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" [mat-dialog-close]="players" cdkFocusInitial>Aceptar</button>
-    <button mat-raised-button color="accent" (click)="cancel()">Cancelar</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="players" cdkFocusInitial>Accept</button>
+    <button mat-raised-button color="accent" (click)="cancel()">Cancel</button>
 </div>
